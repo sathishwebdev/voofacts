@@ -1,0 +1,327 @@
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="D:\w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+blink {
+  -webkit-animation: 2s linear infinite condemned_blink_effect; /* for Safari 4.0 - 8.0 */
+  animation: 2s linear infinite condemned_blink_effect;
+}
+
+/* for Safari 4.0 - 8.0 */
+@-webkit-keyframes condemned_blink_effect { 
+  0% {
+    visibility: hidden;
+  }10% {
+    visibility: hidden;
+  }20% {
+    visibility: visible;
+  }30% {
+    visibility: hidden;
+  }40% {
+    visibility: hidden;
+  }
+  
+  50% {
+    visibility: visible;
+  }60% {
+    visibility: hidden;
+  }70% {
+    visibility: visible;
+  }80% {
+    visibility: hidden;
+  }90% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+@keyframes condemned_blink_effect {
+  0% {
+    visibility: hidden;
+  }10% {
+    visibility: hidden;
+  }20% {
+    visibility: visible;
+  }30% {
+    visibility: hidden;
+  }40% {
+    visibility: hidden;
+  }
+  
+  50% {
+    visibility: visible;
+  }60% {
+    visibility: hidden;
+  }70% {
+    visibility: visible;
+  }80% {
+    visibility: hidden;
+  }90% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+</style><head><body>
+
+<div>
+<h2>Pages</h2>
+<ul>
+<li><a href="https://www.voofacts.com">Home</a></li>
+<li><a href="https://www.voofacts.com/p/about-us.html">About us</a></li>
+<li><a href="https://www.voofacts.com/p/advertise-with-us.html">Privacy Policy</a></li>
+<li><a href="https://www.voofacts.com/p/ask-question.html">Ask Your Questions</a></li>
+<li><a href="https://www.voofacts.com/p/contact.html">Contact us</a></li>
+<li><a href="https://www.voofacts.com/p/disclaimer.html">Disclaimer</a></li>
+<li><a href="https://www.voofacts.com/p/sitemap_9.html">Sitemap</a></li>
+</ul>
+
+</div>
+<hr /><br />
+<h2>Labels and Posts </h2>
+<script type="text/javascript">
+var postSummary = new Array();
+var postTitle = new Array();
+var postUrl = new Array();
+var postPublished = new Array();
+var postDate = new Array();
+var postLabels = new Array();
+var postRecent = new Array();
+var sortBy = "titleasc";
+var numberfeed = 0;
+
+function bloggersitemap(a) {
+    function b() {
+        if ("entry" in a.feed) {
+            var d = a.feed.entry.length;
+            numberfeed = d;
+            ii = 0;
+            for (var h = 0; h < d; h++) {
+                var n = a.feed.entry[h];
+                var e = n.title.$t;
+				var s = n.summary.$t;
+                var m = n.published.$t.substring(0, 10);
+                var j;
+                for (var g = 0; g < n.link.length; g++) {
+                    if (n.link[g].rel == "alternate") {
+                        j = n.link[g].href;
+                        break
+                    }
+                }
+                var o = "";
+                for (var g = 0; g < n.link.length; g++) {
+                    if (n.link[g].rel == "enclosure") {
+                        o = n.link[g].href;
+                        break
+                    }
+                }
+                var c = "";
+                if ("category" in n) {
+                    for (var g = 0; g < n.category.length; g++) {
+                        c = n.category[g].term;
+                        var f = c.lastIndexOf(";");
+                        if (f != -1) {
+                            c = c.substring(0, f)
+                        }
+                        postLabels[ii] = c;
+                        postTitle[ii] = e;
+						postSummary[ii] = s;
+                        postDate[ii] = m;
+                        postUrl[ii] = j;
+                        postPublished[ii] = o;
+                        if (h < 10) {
+                            postRecent[ii] = true
+                        } else {
+                            postRecent[ii] = false
+                        }
+                        ii = ii + 1
+                    }
+                }
+            }
+        }
+    }
+    b();
+    sortBy = "titledesc";
+    sortPosts(sortBy);
+    sortlabel();
+    displayToc();
+}
+
+function sortPosts(d) {
+    function c(e, g) {
+        var f = postTitle[e];
+        postTitle[e] = postTitle[g];
+        postTitle[g] = f;
+		var f = postSummary[e];
+		postSummary[e] = postSummary[g];
+		postSummary[g]= f;
+        var f = postDate[e];
+        postDate[e] = postDate[g];
+        postDate[g] = f;
+        var f = postUrl[e];
+        postUrl[e] = postUrl[g];
+        postUrl[g] = f;
+        var f = postLabels[e];
+        postLabels[e] = postLabels[g];
+        postLabels[g] = f;
+        var f = postPublished[e];
+        postPublished[e] = postPublished[g];
+        postPublished[g] = f;
+        var f = postRecent[e];
+        postRecent[e] = postRecent[g];
+        postRecent[g] = f
+    }
+    for (var b = 0; b < postTitle.length - 1; b++) {
+        for (var a = b + 1; a < postTitle.length; a++) {
+            if (d == "titleasc") {
+                if (postTitle[b] > postTitle[a]) {
+                    c(b, a)
+                }
+            }
+            if (d == "titledesc") {
+                if (postTitle[b] < postTitle[a]) {
+                    c(b, a)
+                }
+            }
+            if (d == "dateoldest") {
+                if (postDate[b] > postDate[a]) {
+                    c(b, a)
+                }
+            }
+            if (d == "datenewest") {
+                if (postDate[b] < postDate[a]) {
+                    c(b, a)
+                }
+            }
+            if (d == "orderlabel") {
+                if (postLabels[b] > postLabels[a]) {
+                    c(b, a)
+                }
+            }
+        }
+    }
+}
+
+function sortlabel() {
+    sortBy = "orderlabel";
+    sortPosts(sortBy);
+    var a = 0;
+    var b = 0;
+    while (b < postTitle.length) {
+        temp1 = postLabels[b];
+        firsti = a;
+        do {
+            a = a + 1
+        } while (postLabels[a] == temp1);
+        b = a;
+        sortPosts2(firsti, a);
+        if (b > postTitle.length) {
+            break
+        }
+    }
+}
+
+function sortPosts2(d, c) {
+    function e(f, h) {
+        var g = postTitle[f];
+        postTitle[f] = postTitle[h];
+        postTitle[h] = g;
+		var g = postSummary[f];
+		postSummary[f] = postSummary[h];
+		postSummary[h]= g;
+        var g = postDate[f];
+        postDate[f] = postDate[h];
+        postDate[h] = g;
+        var g = postUrl[f];
+        postUrl[f] = postUrl[h];
+        postUrl[h] = g;
+        var g = postLabels[f];
+        postLabels[f] = postLabels[h];
+        postLabels[h] = g;
+        var g = postPublished[f];
+        postPublished[f] = postPublished[h];
+        postPublished[h] = g;
+        var g = postRecent[f];
+        postRecent[f] = postRecent[h];
+        postRecent[h] = g
+    }
+    for (var b = d; b < c - 1; b++) {
+        for (var a = b + 1; a < c; a++) {
+            if (postTitle[b] > postTitle[a]) {
+                e(b, a)
+            }
+        }
+    }
+}
+
+
+
+function displayToc() {
+    var a = 0;
+    var b = 0;
+    while (b < postTitle.length) {
+        temp1 = postLabels[b];
+		document.write("<br>");
+        document.write("");
+        document.write('<div class="post-archive "><h1 class="w3-center">' + temp1 + '</h1><div class="ct-columns"><br><div class="w3-row-padding">');
+        firsti = a;
+        do {
+            document.write(' <div class="w3-third w3-container w3-margin-bottom"><div class="w3-container w3-black"><p style = " color : white">');
+            document.write('<a style="color : #fac309; text-decoration : none;" href="' + postUrl[a] + '">' + postTitle[a] + "");
+			
+            if (postRecent[a] == true) {
+                document.write(' - <strong><span><blink>New!</blink></span></strong>')
+            }document.write('</a><br><br>' +'&#9; '+postSummary[a] + '...' );
+            document.write('</p><a style="color : #ff9900; text-decoration : none;" href="' + postUrl[a] +' ">'+'<button class="w3-btn w3-padding w3-margin " style="background-color: #fac309; color :black;"> Read More </button></a></div></div>');
+            a = a + 1
+        } while (postLabels[a] == temp1);
+        b = a;
+        document.write("</div></div></div><br/><hr>");
+        sortPosts2(firsti, a);
+        if (b > postTitle.length) {
+            break
+        }
+    }
+}
+
+</script>
+
+<script src="https://www.voofacts.com/feeds/posts/summary?alt=json-in-script&amp;max-results=9999&amp;callback=bloggersitemap" type="text/javascript"></script><script src="http://www.toppersk.blogspot.com/feeds/posts/summary?alt=json-in-script&amp;max-results=9999&amp;callback=bloggersitemap" type="text/javascript"></script> 
+
+<script type="text/javascript">  
+   var numposts = 10;
+   var standardstyling = true; 
+  function showrecentposts(json) { 
+     for (var i = 0; i < numposts; i++) {
+          var entry = json.feed.entry[i];   
+          var posttitle = entry.title.$t;   
+          var posturl;  
+          var summary = entry.summary.$t; 
+          var photourl = entry.media$thumbnail.url; 
+          if (i == json.feed.entry.length) break;   
+          for (var k = 0; k < entry.link.length; k++) {    
+            if (entry.link[k].rel == 'alternate') {     
+              posturl = entry.link[k].href;     
+              break;    
+            }   
+          }   
+          posttitle = posttitle.link(posturl);   
+          if (standardstyling) document.write('<li>');
+               document.write(posttitle + '<br>'+summary);  
+              }   
+              if (standardstyling) document.write('</li>'); 
+            }
+          </script> 
+          <br />
+          <ul>
+             <script src="https://www.voofacts.com/feeds/posts/summary?orderby=published&alt=json-in-script&callback=showrecentposts&max-results=999"></script>
+            </ul>
+</body>
+
+<style type="text/css">   .grid-sitemap {    overflow: hidden;    position: relative;    height: 565px;    margin: 20px 0 40px 0;   }   .grid-sitemap iframe {     display: block;     width: 100%;     height: 680px;     margin-top: -115px;     margin-left: -5px;   }   </style>  
+ <!-- <div class="grid-sitemap">    <iframe src="https://www.voofacts.com/view/flipcard"></iframe>   </div> -->
+</html>
