@@ -37,8 +37,8 @@ export default class NavPage extends Component {
              <Nav.Link href="#OTD">OTD</Nav.Link> */}
                     
  <Nav.Link href="#slide">Facts</Nav.Link>
- <Nav.Link href="#Cat">Categories</Nav.Link>
- <Nav.Link href="https://facts.voofacts.com/blog/posts">Blog</Nav.Link>
+ {/* <Nav.Link href="#Cat">Categories</Nav.Link> */}
+ <Nav.Link href="#blog">Blog</Nav.Link>
             <NavDropdown title="About" bg="dark" variant="dark" id="navbarScrollingDropdown">
         <NavDropdown.Item href="https://www.voofacts.com/p/about-us.html">About us</NavDropdown.Item>
         <NavDropdown.Item href="https://www.voofacts.com/p/contact.html">Contact us</NavDropdown.Item>

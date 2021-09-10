@@ -10,9 +10,7 @@ function RouterConfig() {
       <Route exact path = "/" children = {<HomePage />} >
 
       </Route>
-      <Route path = "/posts/:id">
-
-      </Route>
+     
      
    
     <Route path="/:var" children={<Redirect to="/" />}>

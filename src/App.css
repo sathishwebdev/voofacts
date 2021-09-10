@@ -4,7 +4,7 @@
   color: white
 }
 
-.App h1{
+.App h2{
   color: #ffc822
 }
 
@@ -65,15 +65,15 @@
   border-radius: 0px 0px 15px 15px;
 }
 .year{
-  background-color: #ffc822;
+  background-color: #000000;
   width: fit-content;
   height: fit-content;
   padding: 5px;
   margin: 2%;
   border-radius: 5px;
-  color: black;
+  color: #ffc822;
   text-align: center;
-  border: #ffc822 solid 0.5px;
+  border: #000000 solid 0.5px;
 }
 .card{
   border-radius: 0px;
@@ -101,17 +101,15 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
-.reimg{
+/* .reimg{
     
   position: absolute;
   bottom: 0;
-  background: rgb(0, 0, 0); 
-  
-  color: #f1f1f1;
+ background-color: #000000;
   width: 100%; height: 100%;
   padding: 40px;
       background: linear-gradient(to left,transparent,black);  
-}
+} */
 .btn{
   outline: none;
   border: none;
@@ -133,4 +131,33 @@ div.scrollmenu a {
   padding: 10px;
   text-decoration: none;
   color: #ffc822;
+} 
+
+a{
+  color : #ffc822;
+  text-decoration: none;
+}
+a:hover{
+  color : #ffbf00
+}
+
+img{
+  width: 100%;
+}
+.imgcon{
+  margin-bottom: 2%;
+  position: relative;
+  height: 280px ;
+  overflow: hidden;
+  box-shadow: #000000 10px 25px 15px inset;
+  max-width: 880px;
+}
+.reimg{
+  height: 100%;
+  background:transparent;background:linear-gradient(to right,transparent,transparent,rgba(0, 0, 0, 0.185),rgba(0, 0, 0, 0.521),black,black)}
+.eimg,.reimg{position:absolute;bottom:0;color:#ffc822;width:100%; padding: 20px}
+.eimg{background:transparent;background:linear-gradient(180deg,transparent,rgba(0, 0, 0, 0.541),rgb(0, 0, 0), rgb(0, 0, 0), black)}
+
+.con{
+  position: relative;
 }
