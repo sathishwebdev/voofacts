@@ -1,13 +1,17 @@
 import React, {useEffect, useState} from 'react'
-
+let postData = []
+let i = 0 //page number || postdata array's index number
 function BlogPost() {
   const [link, setLink] = useState(`https://www.googleapis.com/blogger/v3/blogs/8783291873491079674/posts?key=AIzaSyBSa0px6K3mH5HkhhzbH_Tl4MQiHysI03A&fetchImages=true&lables=OTD&maxResult=999`), [data, setData] = useState(null)
   
  const pagechanger = (token) =>{
 setLink(`${link}&pageToken=${token}`)
  }
- let posts = Fetcher(link)
- useEffect(()=>{setData(posts)},[posts])
+
+ useEffect(()=>{
+      let posts = Fetcher(link)
+    setData(posts)
+},[link])
   
  console.log(data)
 
@@ -26,18 +30,16 @@ setLink(`${link}&pageToken=${token}`)
 export default BlogPost
 
 function Fetcher(link){
-    
-    const [postData, setPostData] = useState({isLoaded : false, error : null})
-
-    useEffect((data)=>{
+   
+    useEffect(()=>{
         window.fetch(link).then(res => res.json())
         .then( (result) => {
            let url = result.items.map((items)=> items.url.split(".com"))
-            setPostData({...postData, items : result.items, url: url, pageToken : result.nextPageToken, all : result, isLoaded : true})
+          postData.push({splitUrl : url, items: result.items, all: result, nextPageToken : nextPageToken || null})
         }, error =>{
-            setPostData({...postData, isLoaded: true, error : error})
+            console.log(error)
         })
-    },[])
+    },[link])
 
   return postData
 }
