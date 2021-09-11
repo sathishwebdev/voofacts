@@ -1,6 +1,6 @@
 import React , {useState, useEffect} from  'react';
 import firebase from 'firebase';
-
+import { toBlob, toJpeg } from 'html-to-image';
 
 function PhotoFacts(props){
 const db= firebase.database();
@@ -81,6 +81,67 @@ setData(snap.val());
             
     }}, [currentFact, db])
 
+
+    
+function download(){
+   
+    toJpeg(document.getElementById('myFact'), { quality: 0.95 })
+    .then(function (dataUrl) {
+      var link = document.createElement('a');
+      link.download = 'Voofacts-image-fact.jpeg';
+      link.href = dataUrl;
+      link.click();
+    });
+  
+    
+  }
+
+  
+function share(){
+   
+
+
+    toBlob(document.getElementById('myFact'), { quality: 0.95 })
+    .then(function (dataUrl) {
+        const file = new File([dataUrl], 'picture.png', {type: "image/png" } )
+        // const shareData = {
+        //     files : [file],
+        //     text: data ? data.url : "For more Interesting facts visit facts.voofacts.com",
+        //     url : "https://facts.voofacts.com",
+        //     title : "Facts | voofacts"
+        // }
+        
+console.log(dataUrl)
+    
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            navigator.share({
+              files: [file],
+              text: data ? data.url : "For more Interesting facts visit facts.voofacts.com",
+            url : "https://facts.voofacts.com",
+            title : "Facts | voofacts"
+            })
+            .then(() => console.log('Share was successful.'))
+            .catch((error) => console.log('Sharing failed', error));
+          } else {
+            const btn = document.querySelector('.shrBtn')
+            
+            btn.addEventListener("click", async () =>{
+           try { await  navigator.share({
+                text: data ? data.url : "For more Interesting facts visit facts.voofacts.com",
+              url : "https://facts.voofacts.com"
+              })
+              .then(() => alert('Share was successful.'))}
+              catch (error) { alert('Sharing failed', error)}
+        }
+          );  // alert(`Your system doesn't support sharing files.`);
+          
+        
+  
+        } 
+  })
+}
+
+
     
 // console.log(data);
     return <div >
@@ -90,7 +151,7 @@ setData(snap.val());
       <div className="carousel slide"><div className="carousel-inner"> 
        <div className="justify-content-center align-items-center" style={{color:"white", overflowY:"auto"}}>
           
-<div className="col-12 " style={{ textAlign:"left", padding:"8%", width:"90vW", display:"flex", flexDirection:"column"}}  >
+<div className="col-12 " id="myFact" style={{ textAlign:"left", padding:"8%", width:"90vW", display:"flex", flexDirection:"column"}}  >
 
 <p style={{fontSize:"small", color:"grey"}}>&#9679; {data === null? (<span>category</span>):(data.category)}  #{typeof(currentFact) == 'number'? (currentFact+1) : (props.day)}</p>
             <div style={{zIndex:"1", justifyContent:"center", alignItems:"center", maxWidth:"90%", minWidth:"75%"}}><h2 >
@@ -99,7 +160,7 @@ setData(snap.val());
         </h2></div> 
         <p style={{fontSize:"small", color:"grey", textAlign:"right"}}> {data === null? (<span>&#9679; Source &#9679; Author</span>):(<span> <a href={data.source} className="App-link" >&#9679; Source </a> &#9679; {data.by}</span>)}</p>   
    </div>
-       
+       <button className="btn pad btn-secondary" style={{backgroundColor:"#ffc822"}} id="dwnBtn" onClick={download} > Download </button>  <button className="btn shrBtn pad btn-secondary"  style={{backgroundColor:"#ffc822"}} onClick={share} > share </button>
       </div>  
     </div>  </div></div>
        

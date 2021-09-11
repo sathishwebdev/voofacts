@@ -68,13 +68,13 @@ useEffect(() => {
 
 </div>*/}
 {/* otd starts */}
- <div id="OTD" className="App-header" style={{backgroundColor:"#ffc822", overflowX:"hidden"}} >
-<div  className="conto" style={{backgroundColor:"#ffc822"}}>
+ <div id="OTD" className="App-header" style={{backgroundColor:"black", overflowX:"hidden"}} >
+<div  className="conto" style={{backgroundColor:"black"}}>
     <div className="top-con" >
-       <h6 style={{background:"black", color:"#ffc822", padding:"8px",textAlign:"left", borderRadius:"15px" }}> <span style={{textTransform:"uppercase"}} >On this Day <span> in History</span></span> <span style={{ }}><i className="fa fa-calender" ></i> {day}{day.length === 2 ? (day[1] === 1 ?(<span>st</span>):(day[1] === 2 ? (<span>nd</span>):(day[1]===3? (<span>rd</span>):(<span>th</span>)))):(day[0] === 1 ?(<span>st</span>):(day[0] === 2 ? (<span>nd</span>):(day[0]===3? (<span>rd</span>):(<span>th</span>))))} {monthData[month]}</span>
+       <h6 style={{background:"#ffc822", color:"#000000", padding:"8px",textAlign:"left", borderRadius:"15px" }}> <span style={{textTransform:"uppercase"}} >On this Day <span> in History</span></span> <span style={{ }}><i className="fa fa-calender" ></i> {day}{day.length === 2 ? (day[1] === 1 ?(<span>st</span>):(day[1] === 2 ? (<span>nd</span>):(day[1]===3? (<span>rd</span>):(<span>th</span>)))):(day[0] === 1 ?(<span>st</span>):(day[0] === 2 ? (<span>nd</span>):(day[0]===3? (<span>rd</span>):(<span>th</span>))))} {monthData[month]}</span>
         </h6>
     </div>
-    <div className="conto" style={{ backgroundColor:"#ffc822", overflowY:"auto", color:"black"}}>
+    <div className="conto" style={{ backgroundColor:"black", overflowY:"auto", color:"#ffc822"}}>
      <table  className="align-items-center" style={{margin:"1%", minWidth:"90%"}}>{
         data.map(e =>(
      <tbody key={e.year}><tr className="pad">
@@ -97,6 +97,9 @@ useEffect(() => {
       </div> 
     )
 }
+
+
+
 function HomePage(){
     return <div>
         <NavPage />

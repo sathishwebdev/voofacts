@@ -65,15 +65,15 @@
   border-radius: 0px 0px 15px 15px;
 }
 .year{
-  background-color: #000000;
+  background-color: #ffc822;
   width: fit-content;
   height: fit-content;
   padding: 5px;
   margin: 2%;
   border-radius: 5px;
-  color: #ffc822;
+  color: #000000;
   text-align: center;
-  border: #000000 solid 0.5px;
+  border: #ffc822 solid 0.5px;
 }
 .card{
   border-radius: 0px;
@@ -141,16 +141,18 @@ a:hover{
   color : #ffbf00
 }
 
-img{
-  width: 100%;
+#thumb{
+  width: 150%;
 }
 .imgcon{
+  /* border-radius: 20px ; */
   margin-bottom: 2%;
   position: relative;
-  height: 280px ;
+  height: 250px ;
   overflow: hidden;
-  box-shadow: #000000 10px 25px 15px inset;
+  /* box-shadow: #3f3f3f 1px 1px 5px ; */
   max-width: 880px;
+  /* box-shadow : #ffbf00 0px 1px 15px  */
 }
 .reimg{
   height: 100%;
