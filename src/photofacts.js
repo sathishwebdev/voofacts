@@ -1,7 +1,8 @@
 import React , {useState, useEffect} from  'react';
 import firebase from 'firebase';
 import { toBlob, toJpeg } from 'html-to-image';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDownload, faShare } from '@fortawesome/free-solid-svg-icons'
 function PhotoFacts(props){
 const db= firebase.database();
 const [NoOfFacts, setNoOfFact] =useState(null);
@@ -111,29 +112,34 @@ function share(){
         //     title : "Facts | voofacts"
         // }
         
-console.log(dataUrl)
     
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
             navigator.share({
               files: [file],
-              text: data ? data.url : "For more Interesting facts visit facts.voofacts.com",
+              text: "For more Interesting facts visit ",
             url : "https://facts.voofacts.com",
-            title : "Facts | voofacts"
+            title : `Facts | ${data===null? " voofacts" : data.category}`
             })
             .then(() => console.log('Share was successful.'))
             .catch((error) => console.log('Sharing failed', error));
           } else {
-            const btn = document.querySelector('.shrBtn')
-            
-            btn.addEventListener("click", async () =>{
-           try { await  navigator.share({
-                text: data ? data.url : "For more Interesting facts visit facts.voofacts.com",
-              url : "https://facts.voofacts.com"
-              })
-              .then(() => alert('Share was successful.'))}
+           
+
+            try {  //navigator.share({
+          //    title: `Facts |  ${data===null? " voofacts" : data.category}`,
+          //       text:  "For more Interesting facts visit ",
+          //     url : "https://facts.voofacts.com"
+ if (navigator.share === undefined) {
+    if (window.location.protocol === 'http:') {
+      window.location.replace(window.location.href.replace(/^http:/, 'https:'));
+    } 
+  }
+
+              // })
+              // .then(() => alert('Share was successful.'))}
+}
               catch (error) { alert('Sharing failed', error)}
-        }
-          );  // alert(`Your system doesn't support sharing files.`);
+          // alert(`Your system doesn't support sharing files.`);
           
         
   
@@ -141,6 +147,9 @@ console.log(dataUrl)
   })
 }
 
+// useEffect(()=> {
+//  
+// }, []);
 
     
 // console.log(data);
@@ -160,9 +169,10 @@ console.log(dataUrl)
         </h2></div> 
         <p style={{fontSize:"small", color:"grey", textAlign:"right"}}> {data === null? (<span>&#9679; Source &#9679; Author</span>):(<span> <a href={data.source} className="App-link" >&#9679; Source </a> &#9679; {data.by}</span>)}</p>   
    </div>
-       <button className="btn pad btn-secondary" style={{backgroundColor:"#ffc822"}} id="dwnBtn" onClick={download} > Download </button>  <button className="btn shrBtn pad btn-secondary"  style={{backgroundColor:"#ffc822"}} onClick={share} > share </button>
+      
       </div>  
-    </div>  </div></div>
+    </div>  </div><div style={{justifyContent : "Right", textAlign:"Right"}} ><button className="btn  btn-secondary" style={{backgroundColor:"transparent", color:"#ffc822"}} id="dwnBtn" onClick={download} ><FontAwesomeIcon icon={faDownload} />DOWNLOAD </button>  <button className="btn shrBtn  btn-secondary"  style={{backgroundColor:"transparent", color:"#ffc822"}} onClick={share} > <FontAwesomeIcon icon={faShare} />SHARE </button>
+      </div></div>
        
 {/* <div className="row">
 <div className="col-6">

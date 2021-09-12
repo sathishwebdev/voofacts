@@ -75,7 +75,7 @@ export default class NavPage extends Component {
  export class AdcompVerticleCen extends React.Component{
 
     componentDidMount(){
-        // (window.adsbygoogle = window.adsbygoogle || []).push({});
+         (window.adsbygoogle = window.adsbygoogle || []).push({});
     }
 
     render(){
