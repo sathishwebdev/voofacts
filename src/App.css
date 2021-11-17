@@ -65,11 +65,7 @@
 }
 .year{
   background-color: #ffc822;
-  width: fit-content;
-  height: fit-content;
-  padding: 5px;
-  margin: 2%;
-  border-radius: 5px;
+  width: 100%;
   color: #000000;
   text-align: center;
   border: #ffc822 solid 0.5px;
