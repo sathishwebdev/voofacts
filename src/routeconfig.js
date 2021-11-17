@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Switch, Redirect} from "react-router-dom";
 import HomePage from './home';
-import Sharebutton from './sharebutton';
+import Otd from './otd';
+
 
 
 function RouterConfig() {
@@ -12,11 +13,11 @@ function RouterConfig() {
 
       </Route>
      
-      <Route  path = "/share" children = {<Sharebutton /> } >
+      <Route exact path = "/otd" children = {<Otd/>} >
 
-</Route>
+      </Route>
    
-    <Route path="/:var" children={<Redirect to="/" />}>
+      <Route path="/:var" children={<Redirect to="/" />}>
       
       </Route>
     

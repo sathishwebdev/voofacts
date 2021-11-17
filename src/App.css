@@ -54,7 +54,6 @@
 
 .conto{
   background-color: black;
-  
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -149,6 +148,8 @@ a:hover{
   margin-bottom: 2%;
   position: relative;
   height: 250px ;
+  display: flex;
+  align-items: center;
   overflow: hidden;
   /* box-shadow: #3f3f3f 1px 1px 5px ; */
   max-width: 880px;
@@ -164,6 +165,9 @@ a:hover{
   position: relative;
 }
 
+#myFacts{
+  background-color: #000000;
+}
 
 /* share button checking css from css ticks */
 
@@ -273,3 +277,17 @@ header {
 
 
 /* here ends */
+
+
+/* card facts */
+
+.card-facts{
+  max-width:999px;
+  overflow-x:auto;
+  display: flex; 
+  flex-wrap: nowrap; 
+}
+
+.card-facts-cont{
+
+}

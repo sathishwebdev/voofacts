@@ -14,17 +14,16 @@ export default class NavPage extends Component {
         <div style={{background:"#ffc822"}} >
           <div className="fixed-top">
         <Navbar collapseOnSelect sticky="top" bg="black" variant="dark" expand="sm" >
-        <Navbar.Brand href="#slide"> <img
+        <Navbar.Brand href="/#slide"> <img
         src={logo}
         height="30px"
         className="d-inline-block align-top rounded"
         alt="logo"
         title="voofacts logo"
       /></Navbar.Brand> 
-       <Nav className="mr-auto " >
+      
         
-            <Nav.Link  href="#OTD">OTD</Nav.Link>
-             </Nav>
+            
          <Navbar.Toggle aria-controls="responsive-navbar-nav" className="btn"  />
   <Navbar.Collapse id="responsive-navbar-nav" >
        
@@ -36,9 +35,12 @@ export default class NavPage extends Component {
            <Nav.Link href="#slide">Facts</Nav.Link>
              <Nav.Link href="#OTD">OTD</Nav.Link> */}
                     
- <Nav.Link href="#slide">Facts</Nav.Link>
+ <Nav.Link href="/#slide">Facts</Nav.Link>
+
+ <Nav.Link href="/otd">OTD</Nav.Link>
+             
  {/* <Nav.Link href="#Cat">Categories</Nav.Link> */}
- <Nav.Link href="#blog">Blog</Nav.Link>
+ <Nav.Link href="/#blog">Blog</Nav.Link>
             <NavDropdown title="About" bg="dark" variant="dark" id="navbarScrollingDropdown">
         <NavDropdown.Item href="https://www.voofacts.com/p/about-us.html">About us</NavDropdown.Item>
         <NavDropdown.Item href="https://www.voofacts.com/p/contact.html">Contact us</NavDropdown.Item>
@@ -75,7 +77,7 @@ export default class NavPage extends Component {
  export class AdcompVerticleCen extends React.Component{
 
     componentDidMount(){
-         (window.adsbygoogle = window.adsbygoogle || []).push({});
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
     }
 
     render(){

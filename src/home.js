@@ -2,18 +2,19 @@ import React, {useState, useEffect} from 'react';
 import PhotoFacts from './photofacts';
 import firebase from 'firebase';
 import 'firebase/database';
-import NavPage from './nav';
-import CategoryPost from './categoryPost';
+
+import CardFacts from './cardFacts';
 import BlogPost from './blogPost';
 
 
 
 
-const Home = () =>{
-const  [data, setData] = useState([]);
 
-var date = new Date().toLocaleDateString("en-in");
+const HomePage = () =>{
+
 const db = firebase.database();
+var date = new Date().toLocaleDateString("en-in");
+
 const monthData = ["/","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 var n = date.split("/");
 // console.log(n[0] , n[1]);
@@ -22,89 +23,26 @@ const month = n[1];
 
 
 
-
-useEffect(() => {
-    const udata = [];
-    db.ref(`otdf/${day}_${month}`).orderByChild("year").on('value', snap => {
-      
-        snap.forEach(e =>{
-            udata.push(e.val());
-        })
-            setData(udata);
-        
-        // console.log(snap.val());
-        // console.log(data);
-        });
-
-       
-    return 
-}, [day, month, db]);
-
-
     return (
         <div style={{ background:"black"}} >
-
             
-        <div id="slide" className="App" style={{ width:"100%", marginRight:"0", marginLeft:"0"}}>
-            {/* <div className="col-12" style={{color:"#ffc822", textAlign:"center"}}>
-            <p> {today ?<span>{today.fact}</span>: <span></span>}</p>
-            </div> */}
-{/* <div className="col-12 col-md-2  d-none d-sm-block align-items-center" style={{maxwidth:"240px", padding:"2%"}} >
- <AdcompVerticleRight />
-</div> */}
+            <div id="slide" className="App" style={{ width:"100%", marginRight:"0", marginLeft:"0"}}>
+                <PhotoFacts day = {day} month={month} monthName = {monthData[month]} />
+            </div>
 
-     {/* <div className="align-items-center d-block d-md-none "><CenterAd /></div><br/> */}
-  
-
-    <PhotoFacts day = {day} month={month} />
-       
-</div> 
-
-
-
- {/* <div className="align-items-center d-block d-md-none "><CenterAd /></div>
-<div className="col-2  d-none d-md-block align-items-center " style={{maxwidth:"240px", padding:"2%"}}>
-    <AdcompVerticleLeft />
-
-</div>*/}
-{/* otd starts */}
- <div id="OTD" className="App-header" style={{backgroundColor:"black", overflowX:"hidden"}} >
-<div  className="conto" style={{backgroundColor:"black"}}>
-    <div className="top-con" >
-       <h6 style={{background:"#ffc822", color:"#000000", padding:"8px",textAlign:"left", borderRadius:"15px" }}> <span style={{textTransform:"uppercase"}} >On this Day <span> in History</span></span> <span style={{ }}><i className="fa fa-calender" ></i> {day}{day.length === 2 ? (day[1] === 1 ?(<span>st</span>):(day[1] === 2 ? (<span>nd</span>):(day[1]===3? (<span>rd</span>):(<span>th</span>)))):(day[0] === 1 ?(<span>st</span>):(day[0] === 2 ? (<span>nd</span>):(day[0]===3? (<span>rd</span>):(<span>th</span>))))} {monthData[month]}</span>
-        </h6>
-    </div>
-    <div className="conto" style={{ backgroundColor:"black", overflowY:"auto", color:"#ffc822"}}>
-     <table  className="align-items-center" style={{margin:"1%", minWidth:"90%"}}>{
-        data.map(e =>(
-     <tbody key={e.year}><tr className="pad">
-       <td><h6 className="year" >{e.year}</h6></td> 
-        <td className="pad"><h6  style={{textAlign:"left", textTransform:"uppercase", color:"#ffc822"}}>{e.fact}</h6></td></tr></tbody>
-        ))
-    }</table>
-    </div></div>
-    
-
-  
-       
-      </div>
-
-{/* otd ends */}
-
-<h1 className="pad" style={{textAlign:"center", color:"#ffc822"}} > Blog Posts </h1>
-<BlogPost />
-
-      </div> 
+            {/* <CardFacts/> */}
+            
+            <h1 className="pad" style={{textAlign:"center", color:"#ffc822"}} > Blog Posts </h1>
+            
+            <BlogPost />
+            
+        </div> 
     )
 }
 
 
 
-function HomePage(){
-    return <div>
-        <NavPage />
-        <Home /></div>
-}
+
 export default HomePage;
 
 // export class AdcompVerticleRight extends React.Component{

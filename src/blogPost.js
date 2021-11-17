@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
 
 
-let postData = []
-  let buttonName = "Load more"
 let i = 0 //page number || postdata array's index number
 let url = `https://www.googleapis.com/blogger/v3/blogs/8783291873491079674/posts?key=AIzaSyBSa0px6K3mH5HkhhzbH_Tl4MQiHysI03A&fetchImages=true&lables=OTD&maxResult=999`
+
+
 function BlogPost() {
 
   const [data, setData] = useState(null)
@@ -26,14 +26,14 @@ function BlogPost() {
  console.log(i,data)
 
 
-  return <div id="blog" className = "App" >
+  return <div id="blog" className = "App pad" >
   
   {data === null ? (<h3>Loading...<span style={{display:"inline-block"}} className="App-logo">⌛</span></h3>): <div className="row align-items-center" style={{textAlign: "left"}} >
       {data.map(items => (
        
         <div className="con col-12 col-md-6 col-lg-3" key={items.id} style={{maxWidth:"720px"}} >
           <a href={items.url} ><div className="imgcon  " >
-            <img id="thumb" src ={items.images[0].url} />
+            <img id="thumb" alt={items.title} title = {items.title} style={{width: '105%'}} src ={items.images[0].url} />
             <div className="eimg " >
               <h4 style={{textAlign:"left"}}>{items.title}</h4>
             </div>
