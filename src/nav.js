@@ -43,7 +43,7 @@ export default function NavPage() {
               />
             </Navbar.Brand>
             <p style={{marginRight: "2%",
-                marginLeft: "2%"}}>By <a target="_blank" href = "https://sathishkumarsk.web.app" rel="noreferrer">SathishWebDev</a></p>
+                marginLeft: "2%"}}>By <a target="_blank" href = "https://sathishwebdev.netlify.app" rel="noreferrer">SathishWebDev</a></p>
             <Button
               variant="contained"
               className="installBtn"
