@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 
-let i = 0 //page number || postdata array's index number
+
 let url = `https://www.googleapis.com/blogger/v3/blogs/8783291873491079674/posts?key=AIzaSyBSa0px6K3mH5HkhhzbH_Tl4MQiHysI03A&fetchImages=true&lables=OTD&maxResult=999`
 
 
@@ -23,7 +23,7 @@ function BlogPost() {
 
 },[])
   
- console.log(i,data)
+ 
 
 
   return <div id="blog" className = "App pad" >

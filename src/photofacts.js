@@ -32,7 +32,6 @@ function PhotoFacts(props) {
        .then((data) => data.json())
        .then((data) => {
          for (let i in data.contents) {
-           console.log(data.contents[i][0].quote);
            setQuote(data.contents[i][0].quote);
          }
        })
@@ -53,12 +52,11 @@ function PhotoFacts(props) {
     count++;
     if (count > NoOfFacts - 2) {
       count = 0;
-      console.log(factData[array[count]])
+      
       setData(factData[array[count]])
     } else {
       // setData(factData[array[count]])
-      console.log(array[count])
-      console.log(factData[array[count]])
+      
       setData(factData[array[count]])
     }
   };
@@ -101,8 +99,8 @@ function PhotoFacts(props) {
         navigator
           .share({
             files: [file],
-            text: "For more Interesting facts visit ",
-            url: "https://facts.voofacts.com",
+            text: `${data === null ? quote : data.fact} \n \n For more Interesting facts visit `,
+            url: "https://factsvf.web.app",
             title: `Facts | ${data === null ? " voofacts" : data.category}`,
           })
           .then(() => console.log("Share was successful."))
@@ -145,6 +143,7 @@ function PhotoFacts(props) {
                 className="col-12 "
                 id="myFact"
                 style={{
+                  backgroundColor:"black",
                   textAlign: "left",
                   padding: "8%",
                   width: "90vW",
@@ -161,7 +160,7 @@ function PhotoFacts(props) {
                     data.category
                  )} {" "}
                   &#9679;{''}
-                  {array? (array[count]) : (
+                  {data ? (array[count]) : (
                     <span>
                       {props.day} {props.monthName}
                     </span>

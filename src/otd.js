@@ -19,7 +19,6 @@ function Otd() {
         .then(res => res.json())
         .then(
           (result) => {
-            console.log(result);
             setData(result.events)
           },
           (error) => {
@@ -53,8 +52,8 @@ function Otd() {
         navigator
           .share({
             files: [file],
-            text: "For more Interesting facts about history, visit ",
-            url: "https://facts.voofacts.com/otd",
+            text: `${data[id].year} - ${data[id].text} \n\n For more Interesting facts about history, visit `,
+            url: "https://factsvf.web.app/otd",
             title: `Facts | ${data === null ? " voofacts" : data.year}`,
           })
           .then(() => console.log("Share was successful."))
@@ -87,54 +86,11 @@ function Otd() {
         className="App-header"
         style={{
           backgroundColor: "black",
-          overflowX: "hidden",
-          marginTop: "50px",
+          overflowX: "hidden"
         }}
       >
         
-          <div className=""
-          style={{
-                background: "#ffc822",
-                color: "#000000",
-                padding: "8px",
-                textAlign: "center",
-                width: "100%",
-                maxHeight: "35px"
-
-              }}>
-            <h6
-              
-            >
-              {" "}
-              <span style={{ textTransform: "uppercase" }}>
-                On this Day <span> in History</span>
-              </span>{" "}
-              <span style={{}}>
-                <Icons.CalendarToday />{day}
-                {day.length === 2 ? (
-                  day[1] === 1 ? (
-                    <span>st</span>
-                  ) : day[1] === 2 ? (
-                    <span>nd</span>
-                  ) : day[1] === 3 ? (
-                    <span>rd</span>
-                  ) : (
-                    <span>th</span>
-                  )
-                ) : day[0] === 1 ? (
-                  <span>st</span>
-                ) : day[0] === 2 ? (
-                  <span>nd</span>
-                ) : day[0] === 3 ? (
-                  <span>rd</span>
-                ) : (
-                  <span>th</span>
-                )}{" "}
-                {monthData[month]}
-              </span>
-            </h6>
-          </div>
-          
+         
           <div
             className="conto"
             style={{
@@ -145,18 +101,20 @@ function Otd() {
           >
             <div
               className="align-items-center"
-              style={{ margin: "1%", maxWidth:"600px", padding: "2%" }}
+              style={{maxWidth:"650px"}}
             >
               {data.map((e, id) => (
-                <div key={id} className="pad">
+                <div key={id} className="my-5">
                   <div id={id} 
                   style={{
-                    border: "1px solid #ffc822",
-                    backgroundColor:"#101010"
+                    borderBottom: "1px solid #ffc822",
+                    backgroundColor:"#000000",
+                    
+                  
                   }}
                  >
                     <div>
-                      <h6 className="year m-auto">{day}
+                      <h6 className="year">#OnThisDay {day}
                 {day.length === 2 ? (
                   day[1] === 1 ? (
                     <span>st</span>
@@ -179,34 +137,72 @@ function Otd() {
                 {monthData[month]}, {e.year}</h6>
                     </div>
                     <div
-                      className="pad">
+                      className="pad"
+                      style={{
+                        display:"flex",
+                        flexDirection:"column",
+                        justifyContent:"center",
+                        alignItems:"center",
+                        minHeight:"30vh"
+                      }}>
                       <h6
                         style={{
                           textAlign: "left",
                           textTransform: "uppercase",
-                          color: "#ffc822",
+                          color: "#ffffff",
                         }}
                       >
-                        {e.text}
+                      <span
+                      style={{
+                        color:"#ffc822"
+                      }}
+                      >  {`In ${day}`}
+                      <sup 
+                      style={{ 
+                        textTransform:"lowercase"
+                      }}
+                      >{`${day.length === 2 ? (
+                  day[1] === 1 ? 
+                    `st`
+                   : day[1] === 2 ? 
+                    `nd`
+                   : day[1] === 3 ? 
+                    `rd`
+                  : 
+                    `th`
+                  
+                ) : day[0] === 1 ? (
+                  `st`
+                ) : day[0] === 2 ? (
+                  `nd`
+                ) : day[0] === 3 ? (
+                  `rd`
+                ) : (
+                  `th`
+                )}`}</sup>
+                {` ${monthData[month]}, ${e.year}${' '}`}</span> {e.text}
                       </h6>
+                      <p style={{fontSize:"small", textAlign:"right", marginLeft:"auto"}}>~ Voofacts</p>
                     </div>
                   </div>
-                    <mui.Button
-            sx={{color: "#ffc822"}}
-            id="dwnBtn"
-            variant='text'
-            onClick={()=>download(id)}
-          >
-            <Icons.Download/> Download
-          </mui.Button>
-
-          <mui.Button
-          sx={{color: "#ffc822"}}
-            variant='text'
-            onClick={()=>share(id)}
-          >
-           <Icons.Share /> Share
-          </mui.Button>
+                    <div className="m-auto">
+                      <mui.Button
+                                  sx={{color: "#ffc822"}}
+                                  id="dwnBtn"
+                                  variant='text'
+                                  onClick={()=>download(id)}
+                                >
+                                  <Icons.Download/> Download
+                                </mui.Button>
+                      
+                                <mui.Button
+                                sx={{color: "#ffc822"}}
+                                  variant='text'
+                                  onClick={()=>share(id)}
+                                >
+                                 <Icons.Share /> Share
+                                </mui.Button>
+                    </div>
                   
                 </div>
               ))}

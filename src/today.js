@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import firebase from 'firebase'
-import {Helmet} from 'react-helmet'
+// import {Helmet} from 'react-helmet'
 function Today() {
 const [today, setToday] = useState(null);
 let date = new Date().toLocaleDateString('en-in')
 let dateData = date.split("/");
 let day = dateData[0];
 let month = dateData[1];
-const monthData = ["/","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
+//const monthData = ["/","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 // console.log(day, month)
 useEffect(()=>{
     firebase.database().ref(`facts/all/fact_today/${month}/${day}`).on('value', snap =>{
@@ -26,7 +26,6 @@ useEffect(()=>{
             <div className="col-12" style={{background:"#ffc822", textAlign:"center"}}><p> {today ?<span>Today it's {today.category} !</span>: <span></span>}</p></div>
             
 {/* <Helmet>
-        <meta charSet="utf-8" />
                 <link rel="canonical" href="http://www.voofacts.com" />
                 <meta
       name="description"
